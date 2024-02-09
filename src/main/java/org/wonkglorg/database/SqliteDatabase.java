@@ -22,7 +22,7 @@ public class SqliteDatabase extends Database {
 
     /**
      * Creates a Sqlite database at the specified copyToPath.
-     * The sourcePath indicates where in the project the database file can be found, it will then be copied to the destinationPath destination.
+     * The sourcePath indicates where in the project the database file can be found(If it is not entered as an absolute path it will be outgoing from the resources directory), it will then be copied to the destinationPath destination.
      * If there is no database file it will be created at the destinationPath location.
      * <br>
      * !!IMPORTANT!!
@@ -100,6 +100,10 @@ public class SqliteDatabase extends Database {
     }
 
     private InputStream getResourceFromJar(String filename) throws IOException {
+
+        File file = new File(filename);
+
+
         URL url = getClass().getClassLoader().getResource(filename.replaceAll("\\\\", "/"));
         if (url == null) {
             return null;
