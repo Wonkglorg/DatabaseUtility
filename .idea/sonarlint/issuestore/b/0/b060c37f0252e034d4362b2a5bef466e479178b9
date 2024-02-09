@@ -1,0 +1,15 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¯åÕøÿÿÿÿ
+`	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+g	java:S116"SRename this field "USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«ÄÜ
+c	java:S116"NRename this field "URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéá·
+m	java:S116"SRename this field "PASSWORD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…í¡¦ûÿÿÿÿ
+t
+java:S2142)"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+O	java:S899/":Do something with the "boolean" value returned by "offer".(¡Ùê
+m
+java:S3457@"KFormat specifiers or lambda should be used instead of string concatenation.(ŞÔŞèşÿÿÿÿ8ç™åëØ1
+m
+java:S3457Q"KFormat specifiers or lambda should be used instead of string concatenation.(Ş·µŠşÿÿÿÿ8ğéåëØ1
+m
+java:S3457U"KFormat specifiers or lambda should be used instead of string concatenation.(Ş·µŠşÿÿÿÿ8Î¶æëØ1
