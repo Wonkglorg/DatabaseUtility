@@ -1,14 +1,12 @@
-package com.wonkglorg.utilitylib.manager.database;
-
-
-import com.wonkglorg.utilitylib.base.logger.Logger;
-import org.bukkit.Material;
+package org.wonkglorg.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * IMPORTANT! Please add the mysql Jconnector to the project if you want to use MySql, I did not include this myself to not inflate the libraries
@@ -20,6 +18,7 @@ public class MySqlDatabase extends Database {
     protected final String USERNAME;
     protected final String URL;
     protected final String PASSWORD;
+    protected final Logger logger = Logger.getLogger(MySqlDatabase.class.getName());
     private BlockingQueue<Connection> connectionPool;
 
     public MySqlDatabase(String url, String username, String password, String databaseName, int poolSize) {
@@ -62,7 +61,7 @@ public class MySqlDatabase extends Database {
             try {
                 connection.close();
             } catch (SQLException e) {
-                Logger.logFatal("Error closing connection: " + e.getMessage());
+                logger.log(Level.SEVERE, "Error closing connection: " + e.getMessage());
             }
         }
     }
@@ -79,12 +78,11 @@ public class MySqlDatabase extends Database {
             Class.forName(databaseType.getClassLoader());
             return DriverManager.getConnection(getDatabaseType().getDriver() + "//" + URL + "/" + DATABASE_NAME, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            Logger.logFatal(e.getClass().getName() + ": " + e.getMessage());
+            logger.log(Level.SEVERE, e.getClass().getName() + ": " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            Logger.logFatal("Mysql-Connector-J Could not be found");
-            Logger.logFatal("This is an error for the plugin developer and should not be reported back to the creator of the library");
-            Logger.logFatal("I did not include this dependency myself to not inflate the libraries size.");
-            Logger.logFatal(e.getClass().getName() + ": " + e.getMessage());
+            logger.log(Level.SEVERE, "Mysql-Connector-J Could not be found");
+            logger.log(Level.SEVERE, "Make sure to Include the MySql-Connector-J library in your project");
+            logger.log(Level.SEVERE, e.getClass().getName() + ": " + e.getMessage());
         }
         return null;
     }

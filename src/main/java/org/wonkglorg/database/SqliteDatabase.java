@@ -1,7 +1,4 @@
-package com.wonkglorg.utilitylib.manager.database;
-
-import com.wonkglorg.utilitylib.base.logger.Logger;
-import org.bukkit.plugin.java.JavaPlugin;
+package org.wonkglorg.database;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,22 +9,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Wonkglorg
  */
 @SuppressWarnings("unused")
 public class SqliteDatabase extends Database{
-
-	protected final JavaPlugin plugin;
 	protected final Path SOURCE_PATH;
+	protected final Logger logger = Logger.getLogger(SqliteDatabase.class.getName());
 	protected final Path DESTINATION_PATH;
 	protected final String DATABASE_NAME;
 
 	/**
-	 * * Creates a Sqlite database at the specified copyToPath.
-	 * * The sourcePath indicates where in the project the database file can be found, it will then be copied to the destinationPath destination.
-	 * * If there is no database file it will be created at the destinationPath location.
+	 * Creates a Sqlite database at the specified copyToPath.
+	 * The sourcePath indicates where in the project the database file can be found, it will then be copied to the destinationPath destination.
+	 * If there is no database file it will be created at the destinationPath location.
 	 * <br>
 	 * !!IMPORTANT!!
 	 * <br>Use <br>
@@ -56,44 +54,6 @@ public class SqliteDatabase extends Database{
 		DATABASE_NAME = name.endsWith(".db") ? name : name + ".db";
 		SOURCE_PATH = sourcePath;
 		DESTINATION_PATH = destinationPath;
-		plugin = null;
-		connect();
-	}
-
-	/**
-	 * Creates a Sqlite database inside your plugin folder with the specified name and paths.
-	 * The sourcePath indicates where in the project the database file can be found, it will then be copied to the destinationPath destination.
-	 * If there is no database file it will be created at the destinationPath location.
-	 * <br>
-	 * !!IMPORTANT!!
-	 * <br>Use <br>
-	 * <pre>
-	 *     {@code
-	 * <plugin>
-	 * 	<groupId>org.apache.maven.plugins</groupId>
-	 * 	<artifactId>maven-resources-plugin</artifactId>
-	 * 	<version>3.3.1</version>
-	 * 	<configuration>
-	 * 		<nonFilteredFileExtensions>
-	 * 			<nonFilteredFileExtension>db</nonFilteredFileExtension>
-	 * 		</nonFilteredFileExtensions>
-	 * 	</configuration>
-	 * </plugin>
-	 * }
-	 * </pre>
-	 * otherwise sqlite database files will be filtered and become corrupted.
-	 *
-	 * @param plugin
-	 * @param sourcePath
-	 * @param destinationPath
-	 */
-	public SqliteDatabase(JavaPlugin plugin, Path sourcePath, Path destinationPath) {
-		super(destinationPath.getFileName().toString(), DatabaseType.SQLITE);
-		this.plugin = plugin;
-		String name = destinationPath.getFileName().toString();
-		DATABASE_NAME = name.endsWith(".db") ? name : name + ".db";
-		SOURCE_PATH = sourcePath;
-		DESTINATION_PATH = Path.of(plugin.getDataFolder().getPath(), destinationPath.toString());
 		connect();
 	}
 
@@ -114,7 +74,7 @@ public class SqliteDatabase extends Database{
 			connection = DriverManager.getConnection(connectionString);
 
 		} catch(ClassNotFoundException | SQLException | IOException e){
-			Logger.logFatal(e.getClass().getName() + ": " + e.getMessage());
+			logger.log(Level.SEVERE, e.getClass().getName() + ": " + e.getMessage());
 		}
 	}
 
