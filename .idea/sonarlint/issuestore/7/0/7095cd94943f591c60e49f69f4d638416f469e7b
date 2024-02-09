@@ -1,9 +1,10 @@
 
-p	java:S116"VRename this field "SOURCE_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÊÃ¢øÿÿÿÿ
-p	java:S116"[Rename this field "DESTINATION_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘Õªø
-m	java:S116"XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„øÎí
+p	java:S116"VRename this field "SOURCE_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÊÃ¢øÿÿÿÿ
+p	java:S116"[Rename this field "DESTINATION_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘Õªø
+m	java:S116"XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„øÎí
+R
+java:S2387"5"DATABASE_NAME" is the name of a field in "Database".(„øÎí8¿´¾þØ1
 m
-java:S3457M"KFormat specifiers or lambda should be used instead of string concatenation.(Þ·µŠþÿÿÿÿ8ó®íëØ1
-W	java:S899W"BDo something with the "boolean" value returned by "createNewFile".(º¯‡æ
+java:S3457K"KFormat specifiers or lambda should be used instead of string concatenation.(Þ·µŠþÿÿÿÿ8ó®íëØ1
 c
-java:S5361c"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶½¹ºüÿÿÿÿ
+java:S5361g"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶½¹ºüÿÿÿÿ
